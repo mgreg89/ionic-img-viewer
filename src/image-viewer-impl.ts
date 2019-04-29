@@ -1,5 +1,4 @@
-import { delay } from 'rxjs/operators/delay';
-import { zip } from 'rxjs/operators/zip';
+import { delay, zip } from 'rxjs/operators';
 
 import { App, Config, NavOptions, ViewController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
@@ -23,7 +22,9 @@ export class ImageViewerImpl extends ViewController {
     this.didLeave.subscribe(
       () => opts.onCloseCallback && opts.onCloseCallback()
     );
-
+	
+	this.instance.picture = opts.picture;
+	
     this.willEnter.subscribe(() =>
       this.handleHighResImageLoad(opts.fullResImage)
     );

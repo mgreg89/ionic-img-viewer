@@ -10,6 +10,11 @@ import { ImageViewerController } from './image-viewer.controller';
 export class ImageViewerDirective {
 
 	@Input('imageViewer') src: string;
+	@Input() picture: {
+		picturetitle: string;
+		picturedescription: string;
+		created: string;
+	};
 	@Output() close = new EventEmitter();
 
 	constructor(
@@ -23,7 +28,7 @@ export class ImageViewerDirective {
 		const element = this._el.nativeElement;
 		const onCloseCallback = () => this.close.emit();
 
-		const imageViewer = this.imageViewerCtrl.create(element, { fullResImage: this.src, onCloseCallback });
+		const imageViewer = this.imageViewerCtrl.create(element, { fullResImage: this.src, onCloseCallback, picture: picture });
 		imageViewer.present();
 	}
 }

@@ -35,6 +35,7 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 	template: `
 		<ion-header no-border>
 			<ion-navbar>
+			{{picture.picturetitle}}
 			</ion-navbar>
 		</ion-header>
 
@@ -51,6 +52,8 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 })
 export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, AfterViewInit {
 	public imageUrl: SafeUrl;
+	
+	public picture;
 
 	public dragGesture: ImageViewerTransitionGesture;
 
