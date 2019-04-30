@@ -7,7 +7,7 @@ import { ImageViewerComponent } from './image-viewer.component';
 
 export class ImageViewer extends OverlayProxy {
 
-	constructor(app: App, component: typeof ImageViewerComponent, private opts: ImageViewerOptions = {}, config: Config, deepLinker: DeepLinker) {
+	constructor(app: App, component: typeof ImageViewerComponent, private opts: ImageViewerOptions, config: Config, deepLinker: DeepLinker) {
 		super(app, component, config, deepLinker);
 	}
 

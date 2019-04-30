@@ -15,7 +15,7 @@ export class ImageViewerController {
    * @param {object} imageElement The image element
    * @param {object} opts ImageViewer options
    */
-  create(imageElement: any,  opts: ImageViewerOptions = {}) {
+  create(imageElement: any,  opts: ImageViewerOptions) {
     const image = imageElement.src;
     const position = imageElement.getBoundingClientRect();
 

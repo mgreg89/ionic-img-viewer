@@ -28,7 +28,7 @@ export class ImageViewerDirective {
 		const element = this._el.nativeElement;
 		const onCloseCallback = () => this.close.emit();
 
-		const imageViewer = this.imageViewerCtrl.create(element, { fullResImage: this.src, onCloseCallback, picture: picture });
+		const imageViewer = this.imageViewerCtrl.create(element, { fullResImage: this.src, onCloseCallback, picture: this.picture });
 		imageViewer.present();
 	}
 }

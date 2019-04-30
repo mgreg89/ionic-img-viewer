@@ -11,7 +11,7 @@ export class ImageViewerImpl extends ViewController {
   constructor(
     private app: App,
     component: ImageViewerComponent,
-    opts: ImageViewerOptions = {},
+    opts: ImageViewerOptions,
     config: Config
   ) {
     super(component, opts);
