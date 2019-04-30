@@ -9,8 +9,5 @@ Thumbs.db
 .vscode
 
 # Ignored files & folders
-*.ts
-!*.d.ts
-/src
 demo
 config
