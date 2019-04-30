@@ -11,7 +11,7 @@ export class ImageViewerImpl extends ViewController {
   constructor(
     private app: App,
     component: ImageViewerComponent,
-    opts: ImageViewerOptions,
+    private opts: ImageViewerOptions,
     config: Config
   ) {
     super(component, opts);
@@ -23,10 +23,12 @@ export class ImageViewerImpl extends ViewController {
       () => opts.onCloseCallback && opts.onCloseCallback()
     );
 	
-	this.instance.picture = opts.picture;
 	
-    this.willEnter.subscribe(() =>
+	
+    this.willEnter.subscribe(() =>{
+	this.instance.picture = opts.picture;
       this.handleHighResImageLoad(opts.fullResImage)
+	  }
     );
   }
 
@@ -38,7 +40,7 @@ export class ImageViewerImpl extends ViewController {
     return this.app.present(this, navOptions);
   }
 
-  private handleHighResImageLoad(fullResImage) {
+  private handleHighResImageLoad(fullResImage) {  
     if (!fullResImage) {
       return;
     }

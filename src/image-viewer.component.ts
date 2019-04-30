@@ -46,6 +46,8 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
+		<div>{{picture.picturedescription}}</div>
+		<div>{{picture.created}}</div>
 	`,
 	styles: [],
 	encapsulation: ViewEncapsulation.None
