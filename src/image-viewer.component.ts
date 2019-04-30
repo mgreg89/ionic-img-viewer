@@ -35,7 +35,7 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 	template: `
 		<ion-header no-border>
 			<ion-navbar>
-			{{picture.picturetitle}}
+			<div *ngIf="picture">{{picture.picturetitle}}</div>
 			</ion-navbar>
 		</ion-header>
 
@@ -46,8 +46,8 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
-		<div>{{picture.picturedescription}}</div>
-		<div>{{picture.created}}</div>
+		<div *ngIf="picture">{{picture.picturedescription}}</div>
+		<div *ngIf="picture">{{picture.created}}</div>
 	`,
 	styles: [],
 	encapsulation: ViewEncapsulation.None
