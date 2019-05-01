@@ -22,8 +22,8 @@ export interface ImageViewerOptions {
 	fullResImage?: string
 	position?: ClientRect;
 	onCloseCallback?: Function;
-	picture: PictureOptions;
-	gamepicturerelation: any;
+	picture?: PictureOptions;
+	gamepicturerelation?: any;
 }
 
 export interface PictureOptions {
