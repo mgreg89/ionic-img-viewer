@@ -36,9 +36,8 @@ import * as moment from 'moment';
 	template: `
 	<style>
 		.hideDetails {
-			bottom: -80px;
+			bottom: -90px !important;
 			transition: 0.5s ease;
-			visibility: hidden;
 		}
 	</style>
 		<ion-header no-border>
@@ -60,8 +59,8 @@ import * as moment from 'moment';
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
-		<div *ngIf="gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}">
-			<ion-item style="z-index: 10; position: absolute;" >
+		<div *ngIf="gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}" style="z-index: 10; position: absolute; bottom: 0; width: 100%">
+			<ion-item style="z-index: 10; position: absolute; bottom: 0;" >
 				<ng-container *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturedescription}}</ng-container>
 				<p>
 					<ion-grid>
@@ -77,8 +76,8 @@ import * as moment from 'moment';
 				</p>
 			</ion-item>				
 		</div>
-		<div *ngIf="picture && !gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}">
-			<ion-item style="z-index: 10; position: absolute;" *ngIf="picture">
+		<div *ngIf="picture && !gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}" style="z-index: 10; position: absolute; bottom: 0; width: 100%">
+			<ion-item *ngIf="picture">
 				{{picture.picturedescription}}
 				<p>{{getCreatedFormatted(picture.created)}}</p>
 			</ion-item>				
