@@ -23,6 +23,7 @@ export interface ImageViewerOptions {
 	position?: ClientRect;
 	onCloseCallback?: Function;
 	picture: PictureOptions;
+	gamepicturerelation: any;
 }
 
 export interface PictureOptions {
