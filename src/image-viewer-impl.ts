@@ -27,6 +27,7 @@ export class ImageViewerImpl extends ViewController {
 	
     this.willEnter.subscribe(() =>{
 	this.instance.picture = opts.picture;
+	this.instance.gamepicturerelation = opts.gamepicturerelation;
       this.handleHighResImageLoad(opts.fullResImage)
 	  }
     );

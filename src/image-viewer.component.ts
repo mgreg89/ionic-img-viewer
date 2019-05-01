@@ -29,13 +29,20 @@ import { ImageViewerSrcAnimation } from './image-viewer-src-animation';
 import { ImageViewerTransitionGesture } from './image-viewer-transition-gesture';
 import { ImageViewerZoomGesture } from './image-viewer-zoom-gesture';
 import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'image-viewer',
 	template: `
 		<ion-header no-border>
 			<ion-navbar>
-			<div *ngIf="picture">{{picture.picturetitle}}</div>
+				<div *ngIf="gamepicturerelation">
+					<ion-title *ngIf="gamepicturerelation.fk_gameid">{{gamepicturerelation.fk_gameid.gamename}}</ion-title>
+					<p style="color: white" *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturetitle}}</p>					
+				</div>
+				<div *ngIf="picture && !gamepicturerelation">
+					<ion-title>{{picture.picturetitle}}</ion-title>					
+				</div>
 			</ion-navbar>
 		</ion-header>
 
@@ -46,8 +53,29 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
-		<div *ngIf="picture">{{picture.picturedescription}}</div>
-		<div *ngIf="picture">{{picture.created}}</div>
+		<div *ngIf="gamepicturerelation">
+			<ion-item style="z-index: 10;" >
+				<ng-container *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturedescription}}</ng-container>
+				<p>
+					<ion-grid>
+						<ion-row>
+							<ion-col *ngIf="gamepicturerelation.fk_pictureid && gamepicturerelation.fk_pictureid.fk_picturetypeid">
+								{{'PICTURETYPE_CONSTANTS.' + gamepicturerelation.fk_pictureid.fk_picturetypeid.constantvalue | translate}}
+							</ion-col>
+							<ion-col *ngIf="gamepicturerelation.fk_pictureid">
+								{{getCreatedFormatted(gamepicturerelation.fk_pictureid.created)}}
+							</ion-col>						
+						</ion-row>
+					</ion-grid>
+				</p>
+			</ion-item>				
+		</div>
+		<div *ngIf="picture && !gamepicturerelation">
+			<ion-item style="z-index: 10;" *ngIf="picture">
+				{{picture.picturedescription}}
+				<p>{{getCreatedFormatted(picture.created)}}</p>
+			</ion-item>				
+		</div>		
 	`,
 	styles: [],
 	encapsulation: ViewEncapsulation.None
@@ -56,6 +84,7 @@ export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, Afte
 	public imageUrl: SafeUrl;
 	
 	public picture;
+	public gamepicturerelation;
 
 	public dragGesture: ImageViewerTransitionGesture;
 
@@ -117,6 +146,10 @@ export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, Afte
 		this.pinchGesture && this.pinchGesture.destroy();
 
 		this.unregisterBackButton();
+	}
+	
+	getCreatedFormatted(created) {
+		return moment(created).format("DD. MMMM YYYY, HH:mm");
 	}
 
 	bdClick() {
