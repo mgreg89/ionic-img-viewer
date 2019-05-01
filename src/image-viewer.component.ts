@@ -60,7 +60,7 @@ import * as moment from 'moment';
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
-		<div *ngIf="gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}>
+		<div *ngIf="gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}">
 			<ion-item style="z-index: 10; position: absolute;" >
 				<ng-container *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturedescription}}</ng-container>
 				<p>
@@ -77,7 +77,7 @@ import * as moment from 'moment';
 				</p>
 			</ion-item>				
 		</div>
-		<div *ngIf="picture && !gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}>
+		<div *ngIf="picture && !gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}">
 			<ion-item style="z-index: 10; position: absolute;" *ngIf="picture">
 				{{picture.picturedescription}}
 				<p>{{getCreatedFormatted(picture.created)}}</p>
