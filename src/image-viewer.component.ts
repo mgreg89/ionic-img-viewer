@@ -44,7 +44,7 @@ import * as moment from 'moment';
 			<ion-navbar>
 				<div *ngIf="gamepicturerelation">
 					<ion-title *ngIf="gamepicturerelation.fk_gameid">{{gamepicturerelation.fk_gameid.gamename}}</ion-title>
-					<p style="color: white" *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturetitle}}</p>					
+					<p style="color: white; padding-left: 14px; margin-top: unset; margin-bottom: unset;" *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturetitle}}</p>					
 				</div>
 				<div *ngIf="picture && !gamepicturerelation">
 					<ion-title>{{picture.picturetitle}}</ion-title>					
