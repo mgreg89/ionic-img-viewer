@@ -34,6 +34,13 @@ import * as moment from 'moment';
 @Component({
 	selector: 'image-viewer',
 	template: `
+	<style>
+		.hideDetails {
+			bottom: -80px;
+			transition: 0.5s ease;
+			visibility: hidden;
+		}
+	</style>
 		<ion-header no-border>
 			<ion-navbar>
 				<div *ngIf="gamepicturerelation">
@@ -48,19 +55,19 @@ import * as moment from 'moment';
 
 		<ion-backdrop (click)="bdClick()"></ion-backdrop>
 
-		<div class="image-wrapper">
+		<div class="image-wrapper" (click)="toggleDetails()">
 			<div class="image" #imageContainer>
 				<img [src]="imageUrl" tappable #image />
 			</div>
 		</div>
-		<div *ngIf="gamepicturerelation">
-			<ion-item style="z-index: 10;" >
+		<div *ngIf="gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}>
+			<ion-item style="z-index: 10; position: absolute;" >
 				<ng-container *ngIf="gamepicturerelation.fk_pictureid">{{gamepicturerelation.fk_pictureid.picturedescription}}</ng-container>
 				<p>
 					<ion-grid>
 						<ion-row>
-							<ion-col *ngIf="gamepicturerelation.fk_pictureid && gamepicturerelation.fk_pictureid.fk_picturetypeid">
-								{{'PICTURETYPE_CONSTANTS.' + gamepicturerelation.fk_pictureid.fk_picturetypeid.constantvalue | translate}}
+							<ion-col *ngIf="gamepicturerelation.fk_pictureid && gamepicturerelation.fk_picturetypeid">
+								{{'PICTURETYPE_CONSTANTS.' + gamepicturerelation.fk_picturetypeid.constantvalue | translate}}
 							</ion-col>
 							<ion-col *ngIf="gamepicturerelation.fk_pictureid">
 								{{getCreatedFormatted(gamepicturerelation.fk_pictureid.created)}}
@@ -70,8 +77,8 @@ import * as moment from 'moment';
 				</p>
 			</ion-item>				
 		</div>
-		<div *ngIf="picture && !gamepicturerelation">
-			<ion-item style="z-index: 10;" *ngIf="picture">
+		<div *ngIf="picture && !gamepicturerelation" [ngClass]="{'hideDetails': !showDetails}>
+			<ion-item style="z-index: 10; position: absolute;" *ngIf="picture">
 				{{picture.picturedescription}}
 				<p>{{getCreatedFormatted(picture.created)}}</p>
 			</ion-item>				
@@ -85,6 +92,8 @@ export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, Afte
 	
 	public picture;
 	public gamepicturerelation;
+	
+	private showDetails: boolean = true;
 
 	public dragGesture: ImageViewerTransitionGesture;
 
@@ -156,5 +165,10 @@ export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, Afte
 		if (this._navParams.get('enableBackdropDismiss')) {
 			this._nav.pop();
 		}
+	}
+	
+	toggleDetails() {
+	console.log("gamepicturerelation", this.gamepicturerelation)
+		this.showDetails = !this.showDetails;
 	}
 }
