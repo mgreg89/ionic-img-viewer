@@ -1,7 +1,7 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 import { ImageViewerComponent } from './image-viewer.component';
-import { ImageViewer } from './image-viewer';
+import { ImageViewer, PictureOptions } from './image-viewer';
 import { ImageViewerController } from './image-viewer.controller';
 
 @Directive({
@@ -10,7 +10,7 @@ import { ImageViewerController } from './image-viewer.controller';
 export class ImageViewerDirective {
 
 	@Input('imageViewer') src: string;
-	@Input() picture: {};
+	@Input() picture: PictureOptions;
 	@Input() gamepicturerelation: {};
 	@Output() close = new EventEmitter();
 
